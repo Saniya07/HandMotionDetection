@@ -117,6 +117,9 @@ while webcam.isOpened():
     # Resize frame to 800, 800
     frame = imutils.resize(frame, width=800, height=800)
 
+    cv2.rectangle(img, (50, 50), (400, 400), (0, 255, 0), 10)
+    cv2.putText(img, "Drawing Canvas", (175, 450), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 0))
+
     # Get hand data from the rectangle sub window
     # This statement makes green rectangle around your hand
     cv2.rectangle(frame, (0, 0), (500, 450), (0, 255, 0), 4)
@@ -197,9 +200,9 @@ while webcam.isOpened():
 
         # This stuff is not really needed for final project but is important, so do not delete it
         # Draw contour
-        drawing = np.zeros(crop_image.shape, np.uint8)
-        cv2.drawContours(drawing, [contour], -1, (0, 255, 0), 0)
-        cv2.drawContours(drawing, [hull], -1, (0, 0, 255), 0)
+        # drawing = np.zeros(crop_image.shape, np.uint8)
+        # cv2.drawContours(drawing, [contour], -1, (0, 255, 0), 0)
+        # cv2.drawContours(drawing, [hull], -1, (0, 0, 255), 0)
 
         # Find convexity defects
         # What are convexity defects?
@@ -274,8 +277,8 @@ while webcam.isOpened():
     # In easy language, shows the webcam stream
     cv2.imshow("Gesture", frame)
 
-    all_image = np.hstack((drawing, crop_image))
-    cv2.imshow('Contours', all_image)
+    # all_image = np.hstack((drawing, crop_image))
+    # cv2.imshow('Contours', all_image)
 
     # Show img with you drawing and erasing those red concentric circles
     cv2.imshow("Image", img)
